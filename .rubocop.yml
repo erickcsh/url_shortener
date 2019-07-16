@@ -1,0 +1,14 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - !ruby/regexp /old_and_unused\.rb$/
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'node_modules/**/*'
+Metrics/LineLength:
+  Max: 120
+Documentation:
+  Enabled: false

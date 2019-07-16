@@ -1,5 +1,11 @@
 {
   "name": "url_shortener",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@rails/webpacker": "^4.0.7"
+  },
+  "devDependencies": {
+    "webpack": "^4.35.3",
+    "webpack-dev-server": "^3.7.2"
+  }
 }
