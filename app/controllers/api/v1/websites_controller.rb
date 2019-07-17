@@ -24,6 +24,7 @@ module Api
         render(json: { id: website.shortened_id }) && return if website.present?
         website = Website.new(website_params)
         if website.save
+          TitleRetrieverJob.perform_later
           render json: { id: website.shortened_id }
         else
           render json: { errors: website.errors }, status: :bad_request
