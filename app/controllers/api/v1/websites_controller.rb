@@ -6,14 +6,14 @@ module Api
       def index
         # TODO: add pagination. Not a requirement for the task
         websites = Website.top(100)
-        render json: websites
+        render json: websites, each_serializer: WebsiteSerializer
       end
 
       def show
         website = Website.find_by_shortened_id(params[:id])
         if website.present?
           website.increase_access_count!
-          render json: website
+          render json: website, serializer: WebsiteSerializer
         else
           render json: {}, status: :not_found
         end
