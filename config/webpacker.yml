@@ -53,7 +53,8 @@ development:
   compile: true
 
   # Verifies that correct packages and versions are installed by inspecting package.json, yarn.lock, and node_modules
-  check_yarn_integrity: true
+  # TODO: Currently set to false since React app is not added yet. Will be added later and this needs to be set to true
+  check_yarn_integrity: false
 
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
