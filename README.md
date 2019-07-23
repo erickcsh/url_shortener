@@ -19,6 +19,20 @@ To read the URL a request with the shortened ID is received and:
 2. Read from the DB using the ID returned in step 1.
 3. Respond with the Website object read from step 2.
 
+The Base62 algorithm is implemented the folowing way.
+1. Create a mapping of 62 different chars using [a-zA-Z0-9], and a number. To do this an array is used where the associated number is the index in the list.
+2. To encode:
+  - Calculate the remainder of the number divided by 62
+  - Find the associated char in the mapping array (by index)
+  - Add this char to an accumulative string
+  - Repeat the process with the value of the number divided by 62
+  - Return the string in reverse order
+3. To decode:
+  - Split each char in the input string
+  - For each char, find the associated number in the mapping (by index)
+  - Multiply each number by 62**(position in split array)
+  - Sum
+
 # Running the project using Docker
 
 To start the project using Docker, run

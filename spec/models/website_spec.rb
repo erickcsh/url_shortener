@@ -1,16 +1,25 @@
 # frozen_string_literal: true
 
-require 'base62-rb'
+require 'base62'
 
 RSpec.describe Website, type: :model do
   it { should validate_presence_of(:url) }
 
   describe '.find_by_shortened_id' do
-    let!(:websites) { FactoryBot.create_list(:website, 3) }
+    context 'when website does exist' do
+      let!(:websites) { FactoryBot.create_list(:website, 3) }
 
-    it 'retrieves top accesed websites' do
-      website = Website.find_by_shortened_id(websites.first.shortened_id)
-      expect(websites.first).to eq(website)
+      it 'retrieves the website associated to the base62 decoded id' do
+        website = Website.find_by_shortened_id(websites.first.shortened_id)
+        expect(websites.first).to eq(website)
+      end
+    end
+
+    context 'when website does not exist' do
+      it 'retrieves the website associated to the base62 decoded id' do
+        website = Website.find_by_shortened_id('1')
+        expect(website).to be_nil
+      end
     end
   end
 
